@@ -1,41 +1,38 @@
 def call() {
 
-pipeline {
+    pipeline {
+        agent any
 
-    agent any
+        stages {
 
-    stages {
-
-        stage('Build') {
-            steps {
-                echo "Building application..."
-                sh 'docker build -t sample-app .'
+            stage('Build') {
+                steps {
+                    echo "Building application..."
+                    sh 'docker build -t sample-app .'
+                }
             }
-        }
 
-        stage('Test') {
-            steps {
-                echo "Running tests..."
-                sh 'echo Tests Passed'
+            stage('Test') {
+                steps {
+                    echo "Running tests..."
+                    sh 'echo Tests Passed'
+                }
             }
-        }
 
-        stage('Security Scan') {
-            steps {
-                echo "Scanning image..."
-                sh 'echo Scan completed'
+            stage('Security Scan') {
+                steps {
+                    echo "Scanning image..."
+                }
             }
-        }
 
-        stage('Deploy') {
-            steps {
-                echo "Deploying application..."
-                sh 'docker run -d -p 80:80 sample-app'
+            stage('Deploy') {
+                steps {
+                    echo "Deploying application..."
+                }
             }
+
         }
 
     }
-
-}
 
 }
